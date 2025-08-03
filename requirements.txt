@@ -1,0 +1,7 @@
+pytrends
+requests
+python-dotenv
+praw
+pandas
+matplotlib
+tensorzero

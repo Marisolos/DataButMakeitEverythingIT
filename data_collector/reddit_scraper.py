@@ -1,5 +1,4 @@
 import praw
-import json
 import os
 from dotenv import load_dotenv
 
@@ -8,32 +7,32 @@ load_dotenv()
 reddit = praw.Reddit(
     client_id=os.getenv("REDDIT_CLIENT_ID"),
     client_secret=os.getenv("REDDIT_CLIENT_SECRET"),
-    user_agent=os.getenv("REDDIT_USER_AGENT"))
+    user_agent=os.getenv("REDDIT_USER_AGENT")
+)
 
-subreddits = ["technology", "MachineLearning", "ITCareerQuestions", "IT", "programming", "datascience", "cscareerquestions", "softwareengineering", "webdev", "learnprogramming"]
-keywords = ["AI", "security", "privacy", "cloud", "automation", "governance"]
+def get_reddit_posts(subreddit="technology", keywords=None, limit=5):
+    """
+    Fetch Reddit posts from a subreddit containing any of the keywords.
+    """
+    if keywords is None:
+        keywords = ["AI", "security", "privacy", "cloud", "automation", "governance"]
 
-results = []
-
-for sub in subreddits:
-    print(f"Søker i r/{sub}...")
-    for submission in reddit.subreddit(sub).new(limit=100):
+    results = []
+    for submission in reddit.subreddit(subreddit).new(limit=100):
         title = submission.title.lower()
         for kw in keywords:
             if kw.lower() in title:
                 results.append({
-                    "subreddit": sub,
+                    "subreddit": subreddit,
                     "keyword": kw,
                     "title": submission.title,
                     "score": submission.score,
                     "url": submission.url,
-                    "created_utc": submission.created_utc
+                    "created_utc": submission.created_utc,
+                    "content": getattr(submission, "selftext", "")
                 })
                 break
+        if len(results) >= limit:
+            break
 
-# Lagre som JSON
-os.makedirs("data", exist_ok=True)
-with open("data/reddit_posts.json", "w", encoding="utf-8") as f:
-    json.dump(results, f, ensure_ascii=False, indent=2)
-
-print(f"{len(results)} relevante Reddit-poster lagret.")
+    return results

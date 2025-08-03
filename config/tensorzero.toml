@@ -1,0 +1,13 @@
+[functions.analyze_reddit]
+type = "chat"
+
+[functions.analyze_reddit.variants.gpt_4o_mini]
+type = "chat_completion"
+model = "openai::gpt-4o-mini"
+
+[functions.summarize_news]
+type = "chat"
+
+[functions.summarize_news.variants.gpt_4o_mini]
+type = "chat_completion"
+model = "openai::gpt-4o-mini"
