@@ -4,31 +4,9 @@ AI-drevet trendanalysesystem for informasjonssystemer. Kombinerer data fra Googl
 
 # Google Trends Data Collection
 
-## 📌 Status per august 2025
-Prosjektet er i gang med innhenting og visualisering av Google Trends-data ved hjelp av `pytrends`.  
-Målet er å hente søketrender for relevante teknologiske nøkkelord og analysere utviklingen over tid.
+## Status per august 2025
 
----
-
-## ✅ Gjort så langt
-- Opprettet Python-script (`google_trends.py`) som:
-  - Henter trender for flere nøkkelord (`AI`, `Blockchain technology`, `Cloud services`)
-  - Oppdager og løser problemet med manglende variasjon ved å hente søkeord separat og normalisere dataene
-  - Lagrer resultatene til `data/google_trends.csv`
-  - Plotter dataene direkte med `matplotlib` for rask visuell inspeksjon
-- Testet at datasettet nå inneholder meningsfull variasjon for alle søkeord
-
----
-
-## 📊 Foreløpig resultat
-Trenden viser:
-- **AI**: Kraftig vekst siste to år
-- **Blockchain technology**: Flere tydelige topper, men generelt mer volatil interesse
-- **Cloud services**: Jevnere interesse med gradvis økning
-
-
-
-
+Prosjektet har nå fått på plass fullstendig pipeline for å hente inn, analysere og visualisere trender innen IT, basert på både søkedata (Google Trends), nyhetsartikler og Reddit-poster. Det er også integrert enkel sentimentanalyse og eksperimentering med observabilitet via TensorZero.
 
 ---
 

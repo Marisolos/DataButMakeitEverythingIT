@@ -4,3 +4,6 @@ __pycache__/
 *.json
 data/*.csv
 data/*.json
+.env
+*.env
+*.secret
